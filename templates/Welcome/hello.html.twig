@@ -3,5 +3,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Hello {{ name }}</h1>
+    <h1>Hello {{ slug }}</h1>
+
+    <ul>
+        <li><a href="{{ path('hello', {slug: 'Adama'}) }}">Adama</a></li>
+        <li><a href="{{ path('hello', {slug: 'Microbe'}) }}">Microbe</a></li>
+    </ul>
+
 {% endblock %}
