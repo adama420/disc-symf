@@ -1,0 +1,5 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<a href="{{ path('put_session', {name: 'Adama'}) }}">Mettre en session Adama</a>
+<a href="{{ path('put_session', {name: 'Toto'}) }}">Mettre en session Toto</a>
+{% endblock %}
