@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
 
 class DemoController extends AbstractController
 {
@@ -79,8 +81,27 @@ class DemoController extends AbstractController
         //je mets name dans la session
         $session->set('name', $name);
 
-        //je redirige
+        //je redirige et creer un message flash
+        $this->addFlash('warning','Message de succès');
+
         return $this->redirectToRoute('show_session');
     }
 
+     /**
+     * @Route("/protected.pdf", name="cv")
+     */ 
+
+     public function downloadCV()
+     {
+
+        $authorized = (bool) rand(0,1);
+        if($authorized) {
+            throw $this->createNotFoundException('Vous ne passerez pas!!! - Gandalf le Gris');
+        }
+        return $this->file(
+            '../CheatsheetBootstrap.pdf',
+            null,
+            ResponseHeaderBag::DISPOSITION_INLINE
+        );
+     }
 }

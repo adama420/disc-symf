@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">    
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}MANGES TES MORTS!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block stylesheets %}
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">        <link rel= "stylesheet" href= "{{ asset('css/app.css') }}"/>
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Shop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item active">
+                    <a class="nav-link" href="list.html">Produits</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div>
+            {% block body %}{% endblock %}
+        </div>
+        <div>
+            {% block footer %}
+            <footer class="bg-light py-5">
+                <div class="container">
+                  <p class="text-center mb-0">Copyright &copy; {{'now' | date('Y')}}</p>
+                </div>
+            </footer>
+            {% endblock %}
+        </div>
+
+        
+        
+        {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src= "{{ asset('js/app.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

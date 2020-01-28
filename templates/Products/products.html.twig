@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+{% block title %}Nos produits - Mon site{% endblock %}
+{% block body %}
+    <div class="container mt-5 mb-5">
+        <h1 class="text-center mb-5">Nos produits</h1>
+        <div>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Prix (€)</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td><a href="product/{{product.slug}}" class="btn btn-success">Voir le produit</a></td>
+                <!--Ce lien marche mais est dégueulasse, si on change product par produit, il faut revoir tous les liens....et c'est pas terrible 
+                    on devrait faire le lien en utilisant PATH {{path('product_list') }}-->
+            </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+        </div>
+    </div>  
+    
+
+
+{% endblock %}
+
+    
+            
+   
