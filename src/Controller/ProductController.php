@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Modele\Product;
+use App\Form\ProductType;
+
 
 
 class ProductController extends AbstractController
@@ -52,9 +54,25 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/create", name="product_create")
      */
-    public function create()
+    public function create(Request $request)
     {
-        return $this->render('Products/productcreate.html.twig');
+        $product = new Product();
+        dump($product);
+
+        $form = $this->createForm(ProductType::class, $product);
+            
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()){
+                dump($form->getData());
+                dump($product);
+
+                //c'est ici qu'on applique les comportements, ajout en BDD, redirection, envoi de mail
+            }
+
+        return $this->render('Products/productcreate.html.twig',[
+            'form'=> $form->createView(),
+        ]);
     }
 
     /**
@@ -76,6 +94,15 @@ class ProductController extends AbstractController
         } throw $this->createNotFoundException('Cet produit n\'existe pas');
 
           
+    }
+    /**
+     * @Route("product/order/{slug}", name="product_order")
+     */
+    public function order($slug)
+    {
+        $this->addFlash('success','Votre '.$slug.' à bien été commandé!');
+
+        return $this->redirectToRoute('product_list');
     }
 
     

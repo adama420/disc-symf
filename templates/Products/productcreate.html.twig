@@ -1,6 +1,11 @@
 {% extends "base.html.twig" %}
 {% block title %}Creation Prodution - Magasin{% endblock %}
 {% block body %}
-    @todo faire le formulaire
+    {{form_start(form, {'attr': {'novalidate': 'novalidate'}})}}
+
+        {{form_widget(form)}}
+        <button class="btn btn-primary">Ajouter un produit</button>
+
+    {{form_end(form)}}
 {% endblock %}
-{% block sidebar %}{{dump()}}{% endblock %}
+{% block sidebar %}{% endblock %}

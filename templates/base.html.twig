@@ -5,7 +5,7 @@
         <title>{% block title %}MANGES TES MORTS!{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         {% block stylesheets %}
-        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">        <link rel= "stylesheet" href= "{{ asset('css/app.css') }}"/>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous">        
         {% endblock %}
     </head>
     <body>
@@ -19,10 +19,10 @@
                 <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Accueil</a>
+                    <a class="nav-link" href="/product">Produits</a>
                     </li>
                     <li class="nav-item active">
-                    <a class="nav-link" href="list.html">Produits</a>
+                    <a class="nav-link" href="/product/random">Produits aléatoire</a>
                     </li>
                 </ul>
                 </div>
@@ -30,6 +30,11 @@
         </nav>
 
         <div>
+            {% for message in app.flashes('success')%}
+                <div class="alert alert-info text-center">
+                    {{message}}
+                </div>   
+            {% endfor %}
             {% block body %}{% endblock %}
         </div>
         <div>
