@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block title %}Contact - Magasin{% endblock %}
+{% block body %}
+    {{form_start(form, {'attr': {'novalidate': 'novalidate'}})}}
+
+    {{form_widget(form)}}
+    <button class="btn btn-primary">Envoyer la demande</button>
+
+    {{form_end(form)}}
+{% endblock %}
+{% block sidebar %}{% endblock %}

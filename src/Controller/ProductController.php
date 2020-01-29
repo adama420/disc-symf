@@ -10,6 +10,7 @@ use App\Form\ProductType;
 
 
 
+
 class ProductController extends AbstractController
 {
     private $products = [];
@@ -60,20 +61,23 @@ class ProductController extends AbstractController
         dump($product);
 
         $form = $this->createForm(ProductType::class, $product);
-            
-            $form->handleRequest($request);
 
-            if($form->isSubmitted() && $form->isValid()){
-                dump($form->getData());
-                dump($product);
+        $form->handleRequest($request);
 
-                //c'est ici qu'on applique les comportements, ajout en BDD, redirection, envoi de mail
-            }
+        if($form->isSubmitted() && $form->isValid()){
+            dump($form->getData());
+            dump($product);
+
+            //c'est ici qu'on applique les comportements, ajout en BDD, redirection, envoi de mail
+        }
 
         return $this->render('Products/productcreate.html.twig',[
             'form'=> $form->createView(),
         ]);
     }
+
+
+
 
     /**
      * @Route("/product/{slug}", name="product_show")

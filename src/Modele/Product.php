@@ -16,6 +16,7 @@ class Product
      * @Assert\Length(min=10)
      */
     protected $description;
+    
 
     public function getName(): ?string
     {
